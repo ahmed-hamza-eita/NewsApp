@@ -1,10 +1,15 @@
 package com.hamza.newsapp.di
 
+import android.content.Context
+import androidx.room.Room
+import com.hamza.newsapp.db.ArticleDB
+import com.hamza.newsapp.db.ArticleDao
 import com.hamza.newsapp.network.ApiCalls
 import com.hamza.newsapp.utils.Const
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -28,5 +33,21 @@ object Module {
             .build()
         return retrofit.create(ApiCalls::class.java)
 
+    }
+
+    //Room
+    /*
+    @Singleton
+    @Provides
+    fun provideRoomDB(@ApplicationContext context: Context): ArticleDao {
+        val myDataBase = Room.databaseBuilder(context, ArticleDB::class.java, Const.DB_NAME)
+            .fallbackToDestructiveMigration().build()
+        return myDataBase.getArticleDao()
+    }
+*/
+    @Provides
+    @Singleton
+    fun provideArticleDatabase(@ApplicationContext context: Context): ArticleDB {
+        return ArticleDB.invoke(context)
     }
 }
