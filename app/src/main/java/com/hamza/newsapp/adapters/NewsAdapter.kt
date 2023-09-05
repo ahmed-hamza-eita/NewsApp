@@ -13,11 +13,7 @@ import com.hamza.newsapp.models.Article
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>() {
     inner class Holder constructor(val binding: ItemArticlePreviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        init {
-            itemView.setOnClickListener {
-                // onItemClick?.onItemClick(list?.get(layoutPosition)?.id!!)
-            }
-        }
+
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
@@ -47,11 +43,12 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.Holder>() {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = differ.currentList[position]
         holder.binding.apply {
-            Glide.with(holder.itemView.context).load(data.urlToImage).into(ivArticleImage)
-            tvSource.text = data.source.name
-            tvDescription.text = data.description
-            tvTitle.text = data.title
-            tvPublishedAt.text = data.publishedAt
+Glide.with(holder.itemView.context).load(data.urlToImage).into(ivArticleImage)
+            tvDescription.text=data.description
+            tvPublishedAt.text=data.publishedAt
+            tvSource.text= data.source.name
+            tvTitle.text=data.title
+
             setOnItemClickListener {
                 onItemClickListener?.let {
                     it(data)

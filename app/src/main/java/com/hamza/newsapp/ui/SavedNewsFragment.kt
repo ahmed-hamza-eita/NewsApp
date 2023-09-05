@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.hamza.newsapp.utils.BaseFragment
 import com.hamza.newsapp.R
 import com.hamza.newsapp.databinding.FragmentSavedNewsBinding
@@ -15,7 +16,7 @@ class SavedNewsFragment : BaseFragment() {
 
     private var _binding: FragmentSavedNewsBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: NewsViewModel by viewModels()
 
 
 

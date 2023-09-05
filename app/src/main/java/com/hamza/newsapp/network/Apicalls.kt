@@ -1,7 +1,6 @@
 package com.hamza.newsapp.network
 
 import com.hamza.newsapp.models.NewsResponse
-import com.hamza.newsapp.utils.Const
 import com.hamza.newsapp.utils.Const.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,7 +10,7 @@ interface ApiCalls {
 
     @GET("v2/top-headlines")
     suspend fun getBreakingNews(
-        @Query("country") country: String = "ar",
+        @Query("country") country: String = "us",
         @Query("page") page: Int = 1,
         @Query("apiKey") apiKey: String = API_KEY
     ): Response<NewsResponse>
