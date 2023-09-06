@@ -24,12 +24,11 @@ object Module {
     @Singleton
     @Provides
     fun retrofitConnection(): ApiCalls {
-        val logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder().addInterceptor(logging).build()
+
 
         val retrofit = Retrofit.Builder().baseUrl(Const.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
+
             .build()
         return retrofit.create(ApiCalls::class.java)
 
