@@ -51,12 +51,12 @@ class BreakingNewsFragment : BaseFragment() {
             val bundle = Bundle().apply {
                 putSerializable(Const.SERIALIZABLE_KEY, it)
             }
-           // navigate(R.id.action_breakingNewsFragment_to_articleFragment, bundle)
+             navigate(R.id.action_breakingNewsFragment_to_articleFragment, bundle)
 
-            findNavController().navigate(R.id.action_breakingNewsFragment_to_articleFragment,bundle)
 
         }
     }
+
 
     private fun observer() {
         viewModel.breakingNewsLiveData.observe(viewLifecycleOwner, Observer { response ->

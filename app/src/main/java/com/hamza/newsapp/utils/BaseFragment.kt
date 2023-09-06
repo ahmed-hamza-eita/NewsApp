@@ -8,7 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
-
+import androidx.navigation.fragment.findNavController
+import com.hamza.newsapp.R
 
 
 open class BaseFragment : Fragment() {
@@ -29,9 +30,16 @@ open class BaseFragment : Fragment() {
         myActivity = requireActivity()
     }
 
+
+
     protected fun navigate(navDirections: NavDirections?) {
         Navigation.findNavController(myView!!).navigate(navDirections!!)
     }
+
+    protected fun navigate(navDirections: Int, bundle: Bundle) {
+        findNavController().navigate(navDirections,bundle)
+    }
+
 
 
 }
