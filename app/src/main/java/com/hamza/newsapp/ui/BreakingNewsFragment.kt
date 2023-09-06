@@ -12,6 +12,7 @@ import com.hamza.newsapp.utils.BaseFragment
 import com.hamza.newsapp.R
 import com.hamza.newsapp.adapters.NewsAdapter
 import com.hamza.newsapp.databinding.FragmentBreakingNewsBinding
+import com.hamza.newsapp.models.Article
 import com.hamza.newsapp.utils.Const
 import com.hamza.newsapp.utils.ProgressLoading
 import com.hamza.newsapp.utils.Resource
@@ -51,7 +52,9 @@ class BreakingNewsFragment : BaseFragment() {
                 putSerializable(Const.SERIALIZABLE_KEY, it)
             }
            // navigate(R.id.action_breakingNewsFragment_to_articleFragment, bundle)
-             findNavController().navigate(R.id.action_breakingNewsFragment_to_articleFragment,bundle)
+
+            findNavController().navigate(R.id.action_breakingNewsFragment_to_articleFragment,bundle)
+
         }
     }
 

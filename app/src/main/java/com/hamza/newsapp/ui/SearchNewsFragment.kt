@@ -54,13 +54,14 @@ class SearchNewsFragment : BaseFragment() {
     }
 
     private fun actions() {
-        adapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable(Const.SERIALIZABLE_KEY, it)
+//        adapter.setOnItemClickListener {
+//            val bundle = Bundle().apply {
+//                putSerializable(Const.SERIALIZABLE_KEY, it)
+//
+//            }
+//            findNavController().navigate(R.id.action_searchNewsFragment_to_articleFragment, bundle)
+//        }
 
-            }
-            findNavController().navigate(R.id.action_searchNewsFragment_to_articleFragment, bundle)
-        }
 
         binding.etSearch.addTextChangedListener { editable ->
             job?.hashCode()

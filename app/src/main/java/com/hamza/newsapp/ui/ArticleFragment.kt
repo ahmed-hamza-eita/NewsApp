@@ -41,9 +41,7 @@ class ArticleFragment : BaseFragment() {
         val article = args.article
         binding.webView.apply {
             webViewClient = WebViewClient()
-            if (article != null) {
-                loadUrl(article.url)
-            }
+            loadUrl(article.url!!)
         }
     }
 
