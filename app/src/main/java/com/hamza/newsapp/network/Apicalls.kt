@@ -16,7 +16,7 @@ interface ApiCalls {
     ): Response<NewsResponse>
 
 
-    @GET("v2/top-everything")
+    @GET("v2/everything")
     suspend fun searchForNews(
         @Query("q") search: String,
         @Query("page") page: Int = 1,

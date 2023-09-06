@@ -19,6 +19,7 @@
         android:id="@+id/rvSearchNews"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:paddingBottom="50dp"
         tools:listitem="@layout/item_article_preview"
         android:clipToPadding="false"
