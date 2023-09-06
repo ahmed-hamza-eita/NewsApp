@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.hamza.newsapp.R
 import com.hamza.newsapp.databinding.FragmentArticleBinding
 import com.hamza.newsapp.utils.BaseFragment
@@ -20,6 +21,7 @@ class ArticleFragment : BaseFragment() {
 
     private val viewModel: NewsViewModel by viewModels()
     private val args: ArticleFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,13 +37,22 @@ class ArticleFragment : BaseFragment() {
         showArticle()
 
 
+
     }
+
+
 
     private fun showArticle() {
         val article = args.article
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url!!)
+        }
+
+        binding.fab.setOnClickListener {
+
+            viewModel.saveArticle(article)
+            Snackbar.make(it, "Article saved", Snackbar.LENGTH_SHORT).show()
         }
     }
 

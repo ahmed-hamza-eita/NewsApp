@@ -3,6 +3,7 @@ package com.hamza.newsapp.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hamza.newsapp.models.Article
 import com.hamza.newsapp.models.NewsResponse
 import com.hamza.newsapp.repository.NewsRepository
 import com.hamza.newsapp.utils.Resource
@@ -35,23 +36,35 @@ class NewsViewModel @Inject constructor(private val repo: NewsRepository) : View
         val response = repo.searchForNew(searchTerm, searchNewsPage)
         searchNewsLiveData.postValue(handleSearchNewsResponse(response))
     }
-}
 
-private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
-    if (response.isSuccessful) {
-        response.body()?.let { result ->
-            return Resource.Success(result)
+
+    private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { result ->
+                return Resource.Success(result)
+            }
         }
+        return Resource.Error(response.message())
     }
-    return Resource.Error(response.message())
-}
 
 
-private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
-    if (response.isSuccessful) {
-        response.body()?.let { result ->
-            return Resource.Success(result)
+    private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+        if (response.isSuccessful) {
+            response.body()?.let { result ->
+                return Resource.Success(result)
+            }
         }
+        return Resource.Error(response.message())
+
+
     }
-    return Resource.Error(response.message())
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        repo.upsertArticle(article)
+    }
+
+    fun getSavedNews() = repo.getSavedNews()
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        repo.deleteArticle(article)
+    }
 }
