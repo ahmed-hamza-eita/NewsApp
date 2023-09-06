@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.hamza.newsapp.utils.BaseFragment
 import com.hamza.newsapp.R
 import com.hamza.newsapp.adapters.NewsAdapter
@@ -53,17 +54,27 @@ class SearchNewsFragment : BaseFragment() {
     }
 
     private fun actions() {
+        adapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable(Const.SERIALIZABLE_KEY, it)
+
+            }
+            findNavController().navigate(R.id.action_searchNewsFragment_to_articleFragment, bundle)
+        }
+
         binding.etSearch.addTextChangedListener { editable ->
             job?.hashCode()
             job = MainScope().launch {
                 delay(Const.SEARCH_NEWS_TIME_DELAY)
                 editable?.let {
-                    if(editable.toString().isNotEmpty()){
+                    if (editable.toString().isNotEmpty()) {
                         viewModel.searchNews(editable.toString())
                     }
                 }
             }
         }
+
+
     }
 
     private fun observer() {

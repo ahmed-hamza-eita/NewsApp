@@ -49,8 +49,8 @@ Glide.with(holder.itemView.context).load(data.urlToImage).into(ivArticleImage)
             tvSource.text= data.source.name
             tvTitle.text=data.title
 
-            setOnItemClickListener {
-                onItemClickListener?.let {
+            holder.itemView.setOnClickListener {
+                onItemClickListener?.let{
                     it(data)
                 }
             }
